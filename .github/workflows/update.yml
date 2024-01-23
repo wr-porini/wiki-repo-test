@@ -28,7 +28,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m $MSG
+          git commit -m "$MSG"
           git push
         env:
           MSG: ${{ inputs.message }}
