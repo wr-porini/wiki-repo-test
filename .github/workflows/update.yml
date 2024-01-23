@@ -1,16 +1,23 @@
+name: Update from private repo
 on: [workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout current
         uses: actions/checkout@v4
-      - name: Checkout private repo
+        with:
+          path: current
+      - name: Checkout private
         uses: actions/checkout@v4
         with:
           repository: wr-porini/private-repo-test
+          path: private
           token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
-      - run: |
+      - name: Push files
+        run: |
+          cp -a private current
+          cd current
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
