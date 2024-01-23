@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: wr-porini/private-repo-test
-          token: ${{ secrets.GITHUB_TOKEN }} # `GH_PAT` is a secret that contains your PAT
+          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
