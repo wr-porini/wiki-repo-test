@@ -14,9 +14,11 @@ jobs:
           repository: wr-porini/private-repo-test
           path: private
           token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+      - name: Copy files
+        run: |
+          rsync -av --exclude='.git/' --delete private/ current
       - name: Push files
         run: |
-          cp -a private current
           cd current
           git config user.name github-actions
           git config user.email github-actions@github.com
